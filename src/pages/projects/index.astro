@@ -1,0 +1,28 @@
+---
+import ProjectCard from '../../../src/components/ProjectCard.astro'
+import { getCollection } from "astro:content";
+import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
+
+// read mdx files from projects folder as entities
+const projects = await getCollection('projects');
+---
+
+<IndexPageLayout title="Projects" description="Projects I have worked on recently." subTitle="Mes réalisations">
+  <div class="grid grid-cols-2 gap-3">
+
+  {
+    projects.map((entity: any) => (
+      <ProjectCard
+        key={entity.data.title}
+        href={'/projects/' + entity.slug}
+        heading={entity.data.title}
+        subheading={entity.data.description}
+        altText={entity?.data?.image.alt}
+        imagePath={entity?.data?.image.url}
+      />
+    ))
+  }
+  </div>
+
+
+</IndexPageLayout>
