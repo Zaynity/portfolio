@@ -1,12 +1,32 @@
 ---
 import { Badge } from "./ui/badge";
 const {tags} = Astro.props;
----
 
+const skillTagMapping = {
+  "base de données": "database",
+  "admin système linux": "admin-sys-linux",
+  "design graphique": "design",
+  "docker": "docker",
+  "documentation": "documentation",
+  "git": "git",
+  "gestion de projet": "project-management",
+  "scripting": "scripting",
+  "formation": "training",
+  "virtualisation": "virtualization"
+};
+
+function getTagUrl(tag) {
+  const skill = skillTagMapping[tag.toLowerCase()] || tag.toLowerCase();
+  const skillUrl = `/skills/${skill}`;
+  const projectUrl = `/projects/${tag.toLowerCase()}`;
+
+  return skillTagMapping[tag.toLowerCase()] ? skillUrl : projectUrl;
+}
+---
 
 <div class="flex flex-0 gap-1 flex-wrap">
   {tags.map((i) => (
-    <a href={`/tags/${i}`}>
+    <a href={getTagUrl(i)}>
       <Badge className="truncate">{i}</Badge>
     </a>
   ))}
