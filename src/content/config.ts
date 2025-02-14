@@ -13,6 +13,7 @@ const projectCollection = defineCollection({
       })
       .optional(),
     tags: z.array(z.string()).optional(),
+    type: z.enum(['competences', 'realisations']),
   }),
 });
 

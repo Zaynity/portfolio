@@ -3,7 +3,10 @@ import ContentTags from "../components/ContentTags.astro";
 import IndexPageLayout from "./IndexPageLayout.astro";
 
 const {frontmatter} = Astro.props;
-const {title, description, image, tags, canonical} = frontmatter;
+const {title, description, image, tags, canonical, type} = frontmatter;
+console.log('Frontmatter complet:', JSON.stringify(frontmatter, null, 2));
+console.log('Type extrait:', type);
+console.log('Type direct:', frontmatter.type);
 ---
 
 <IndexPageLayout title={title} description={description} image={image} subTitle={title} canonicalURL={canonical}>
@@ -12,5 +15,10 @@ const {title, description, image, tags, canonical} = frontmatter;
       <slot/>
     </article>
   </div>
-  <ContentTags tags={tags}/>
+  <div class="mt-4">
+    <h3 class="text-2xl mb-2 text-center">
+      {type === 'competences' ? 'Compétences en lien' : type === 'projects' ? 'Réalisations en lien' : ''}
+    </h3>
+    <ContentTags tags={tags}/>
+  </div>
 </IndexPageLayout>
