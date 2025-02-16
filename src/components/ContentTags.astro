@@ -18,7 +18,7 @@ const skillTagMapping = {
 function getTagUrl(tag) {
   const skill = skillTagMapping[tag.toLowerCase()] || tag.toLowerCase();
   const skillUrl = `/competences/${skill}`;
-  const projectUrl = `/projects/${tag.toLowerCase()}`;
+  const projectUrl = `/realisations/${tag.toLowerCase()}`;
 
   return skillTagMapping[tag.toLowerCase()] ? skillUrl : projectUrl;
 }

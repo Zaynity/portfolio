@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
 
 // read mdx files from projects folder as entities
-const projects = await getCollection('projects');
+const projects = await getCollection('realisations');
 ---
 
 <IndexPageLayout title="Réalisations" subTitle="Mes réalisations">
@@ -14,7 +14,7 @@ const projects = await getCollection('projects');
     projects.map((entity: any) => (
       <ProjectCard
         key={entity.data.title}
-        href={'/projects/' + entity.slug}
+        href={'/realisations/' + entity.slug}
         heading={entity.data.title}
         subheading={entity.data.description}
         altText={entity?.data?.image.alt}

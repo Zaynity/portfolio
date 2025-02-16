@@ -3,28 +3,28 @@ import { getCollection } from "astro:content";
 import Card from '../Card.astro'
 import { Button } from '../ui/button'
 
-let projects = await getCollection('projects');
+let realisations = await getCollection('realisations');
 
-projects = projects.slice(0, 3);
+realisations = realisations.slice(0, 3);
 ---
 
 
 <div class="mt-2 space-y-4">
   {
-    projects.slice(0, 3).map((project) => (
+    realisations.slice(0, 3).map((realisation) => (
       <div>
         <h3 class="text-lg font-semibold text-primary">
-          <a href={`/projects/${project.slug}`} class="hover:underline">
-            {project.data.title}
+          <a href={`/realisations/${realisation.slug}`} class="hover:underline">
+            {realisation.data.title}
           </a>
         </h3>
         <p class="text-sm">
-          {project.data.description}
+          {realisation.data.description}
         </p>
       </div>
     ))
   }
-  <a href="/projects">
+  <a href="/realisations">
     <Button variant="link" className="pl-0"> View More</Button>
   </a>
 </div>

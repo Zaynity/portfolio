@@ -7,7 +7,7 @@ import MDXLayout from "../../layouts/MDXLayout.astro";
   This is the dynamic route for projects
  **/
 export async function getStaticPaths() {
-  const projectsEntries = await getCollection('projects');
+  const projectsEntries = await getCollection('realisations');
   return projectsEntries.map(entry => ({
     params: {slug: entry.slug}, props: {entry},
   }));
