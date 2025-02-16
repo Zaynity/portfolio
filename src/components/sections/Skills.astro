@@ -9,7 +9,7 @@ import { PROFILE } from "../../content/profileData";
       {
         PROFILE.technicalSkills.map((skill) => (
           <li>
-            <a href={`/skills/${skill.toLowerCase().replace(/\s+/g, '-')}`}>
+            <a href={`/competences/${skill.toLowerCase().replace(/\s+/g, '-')}`}>
               <span>{skill}</span>
             </a>
           </li>
@@ -23,7 +23,7 @@ import { PROFILE } from "../../content/profileData";
       {
         PROFILE.otherSkills.map((skill) => (
           <li>
-            <a href={`/skills/${skill.toLowerCase().replace(/\s+/g, '-')}`}>
+            <a href={`/competences/${skill.toLowerCase().replace(/\s+/g, '-')}`}>
               <span>{skill}</span>
             </a>
           </li>

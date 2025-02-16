@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
 import { Button } from '../../components/ui/button'
 
-const skills = await getCollection('skills');
+const skills = await getCollection('competences');
 ---
 
 <IndexPageLayout title="Compétences" subTitle="Compétences">
@@ -19,7 +19,7 @@ const skills = await getCollection('skills');
         <SkillCard
           key={entity.data.title}
           class={entity.data.category}
-          href={'/skills/' + entity.slug}
+          href={'/competences/' + entity.slug}
           heading={entity.data.title}
           subheading={entity.data.description}
           altText={entity?.data?.image.alt}
