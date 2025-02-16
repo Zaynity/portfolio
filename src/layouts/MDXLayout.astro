@@ -4,9 +4,6 @@ import IndexPageLayout from "./IndexPageLayout.astro";
 
 const {frontmatter} = Astro.props;
 const {title, description, image, tags, canonical, type} = frontmatter;
-console.log('Frontmatter complet:', JSON.stringify(frontmatter, null, 2));
-console.log('Type extrait:', type);
-console.log('Type direct:', frontmatter.type);
 ---
 
 <IndexPageLayout title={title} description={description} image={image} subTitle={title} canonicalURL={canonical}>
