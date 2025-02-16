@@ -18,7 +18,7 @@ const skills = await getCollection('skills');
       skills.map((entity: any) => (
         <SkillCard
           key={entity.data.title}
-          class={entity.data.type}
+          class={entity.data.category}
           href={'/skills/' + entity.slug}
           heading={entity.data.title}
           subheading={entity.data.description}
