@@ -1,0 +1,135 @@
+---
+import {Button} from './ui/button'
+
+export interface Experience {
+  slug: string;
+  data: {
+    title: string;
+    startDate: string;
+    endDate: string;
+    description: string;
+    tags: string[];
+    imageUrl: string;
+  };
+}
+
+interface Props {
+  experiences: Experience[];
+}
+const { experiences } = Astro.props as Props;
+
+function formatLocalMonth(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleString('fr-FR', { month: 'long', year: 'numeric' });
+}
+---
+<div class="timeline">
+  {experiences.map((entry) => (
+    <div class="timeline-item">
+      <h3 class="timeline-title">{entry.data.title}</h3>
+      <div class="timeline-content">
+        <div class="timeline-image-container">
+          <img src={entry.data.imageUrl} alt={entry.data.title} class="timeline-image" />
+        </div>
+        <div class="timeline-text">
+          <p class="timeline-description">{entry.data.description}</p>
+          <div class="timeline-date">
+            De {formatLocalMonth(entry.data.startDate)} à {formatLocalMonth(entry.data.endDate)}
+          </div>
+          <a href={`/experiences/${entry.slug}`}>
+            <Button variant="link" className="pl-0">En savoir plus</Button>
+          </a>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+/* Timeline circles */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  z-index: 1;
+}
+
+/* Timeline */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: 0.45rem;
+  top: 1rem;
+  width: 2px;
+  height: calc(150% - 1rem);
+  background-color: #ccc;
+  z-index: 0;
+}
+
+.timeline-date {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.timeline-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.timeline-text {
+  flex: 1;
+}
+
+.timeline-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.timeline-description {
+  font-size: 1rem;
+}
+
+.timeline-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.timeline-badge {
+  background-color: #eee;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.timeline-image-container {
+  margin-right: 1rem; /* Change margin-left to margin-right */
+}
+
+.timeline-image {
+  width: 100px;
+  height: auto;
+}
+</style>
