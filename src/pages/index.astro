@@ -8,7 +8,6 @@ import ExperienceCard from '../components/sections/ExperienceCard.astro'
 import Realisations from '../components/sections/Realisations.astro'
 import StudyCard from '../components/sections/StudyCard.astro'
 import { PROFILE } from "../content/profileData";
-import BlogCard from '../components/sections/BlogCard.astro'
 const SITE = PROFILE.site
 ---
 
@@ -60,10 +59,6 @@ const SITE = PROFILE.site
       <ExperienceCard/>
     </Card>
 
-
-    <Card colSpan="md:col-span-1 lg:col-span-6" rowSpan="md:row-span-1 lg:row-span-1" title="Blog Posts">
-      <BlogCard/>
-    </Card>
     <Card colSpan="md:col-span-1 lg:col-span-6" rowSpan="md:row-span-2 lg:row-span-1" title="Contact">
       <div class="flex h-full w-full items-center justify-center text-center text-sm">
         <i>
@@ -72,7 +67,6 @@ const SITE = PROFILE.site
         </i>
       </div>
     </Card>
-
 
   </main>
 </BaseLayout>
