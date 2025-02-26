@@ -59,7 +59,11 @@ const skills = await getCollection('competences');
       });
     }
   }
+
   // Attach event listeners when the page is loaded or when the page is swapped
   document.addEventListener('DOMContentLoaded', attachEventListeners);
   document.addEventListener('astro:after-swap', attachEventListeners);
+
+  // Ensure event listeners are attached on initial load
+  attachEventListeners();
 </script>
