@@ -1,32 +1,47 @@
-
 ---
 import { getCollection } from "astro:content";
-import Card from '../Card.astro'
-import { Button } from '../ui/button'
-import { formateLocalDate } from "../../lib/utils";
+import { Button } from '../ui/button';
+
 
 let experiences = await getCollection('experiences');
 
+// Function to format the date in French
+function formatLocalMonth(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleString('fr-FR', { month: 'long', year: 'numeric' });
+}
+
+// Filter experiences by anti-chronological order
+experiences.sort((a, b) => new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime());
+
+// Limit the number of experiences displayed
 experiences = experiences.slice(0, 3);
 ---
 
-
 <div class="mt-2 space-y-4">
-  {
-    experiences.slice(0, 3).map((exp) => (
-      <div>
-        <h4 class="text-md font-medium">{exp.data.title}</h4>
-        <a class="text-sm text-primary hover:underline" href={ '/experiences/' + exp?.slug}>
-          {exp.data.company}
+  {experiences.map((exp) => (
+    <div>
+      <h3 class="text-lg text-primary">
+        <a href={`/parcours/${exp.slug}`} class="hover:underline">
+          {exp.data.title}
         </a>
-        <p class="text-sm text-gray-600">
-         {formateLocalDate(exp.data.startDate)} {exp.data?.endDate ? '- ' + formateLocalDate(exp.data.endDate) : ''}
-
-        </p>
-      </div>
-    ))
-  }
+      </h3>
+      <p class="text-sm">
+        {exp.data.description}
+      </p>
+      <p class="description">
+        De {formatLocalMonth(exp.data.startDate)} à {exp.data.endDate ? formatLocalMonth(exp.data.endDate) : 'présent'}
+      </p>
+    </div>
+  ))}
   <a href="/parcours">
-    <Button variant="link" className="pl-0"> View More</Button>
+    <Button variant="link" className="pl-0">Voir l'ensemble de mon parcours</Button>
   </a>
 </div>
+
+<style>
+  .description {
+    font-size: 0.875rem;
+    color: #666;
+  }
+  </style>

@@ -1,19 +1,18 @@
 ---
 import { getCollection } from "astro:content";
-import Card from '../Card.astro'
 import { Button } from '../ui/button'
 
 let realisations = await getCollection('realisations');
 
+// Limit the number of realisations displayed
 realisations = realisations.slice(0, 3);
 ---
 
-
 <div class="mt-2 space-y-4">
   {
-    realisations.slice(0, 3).map((realisation) => (
+    realisations.slice(0, 2).map((realisation) => (
       <div>
-        <h3 class="text-lg font-semibold text-primary">
+        <h3 class="text-lg text-primary">
           <a href={`/realisations/${realisation.slug}`} class="hover:underline">
             {realisation.data.title}
           </a>
@@ -25,7 +24,6 @@ realisations = realisations.slice(0, 3);
     ))
   }
   <a href="/realisations">
-    <Button variant="link" className="pl-0"> View More</Button>
+    <Button variant="link" className="pl-0">Voir mes autres réalisations</Button>
   </a>
 </div>
-
