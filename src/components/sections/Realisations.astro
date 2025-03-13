@@ -13,7 +13,7 @@ realisations = realisations.slice(0, 3);
     realisations.slice(0, 2).map((realisation) => (
       <div>
         <h3 class="text-lg text-primary">
-          <a href={`/${import.meta.env.BASE_URL}realisations/${realisation.slug}`} class="hover:underline">
+          <a href={`${import.meta.env.BASE_URL}/realisations/${realisation.slug}`} class="hover:underline">
             {realisation.data.title}
           </a>
         </h3>
@@ -23,7 +23,7 @@ realisations = realisations.slice(0, 3);
       </div>
     ))
   }
-  <a href="/${import.meta.env.BASE_URL}realisations">
+  <a href={`${import.meta.env.BASE_URL}/realisations`}>
     <Button variant="link" className="pl-0">Voir mes autres réalisations</Button>
   </a>
 </div>
