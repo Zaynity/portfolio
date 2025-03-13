@@ -8,7 +8,7 @@ export const PROFILE = {
   },
   language: "fr-FR",
   name: "Matéo MIOSSEC",
-  avatarUrl: "../../../public/profile_picture.webp",
+  avatarUrl: "/portfolio/public/profile_picture.webp",
   shortIntros: [
     "💻 Apprenti ingénieur systèmes | Ingénieur DevOps en devenir",
     "👨‍🎓 Étudiant en dernière année de mastère",
