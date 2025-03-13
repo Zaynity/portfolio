@@ -7,6 +7,7 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   site: 'https://zaynity.github.io',
   base: 'portfolio',
+  trailingSlash: "always",
   integrations: [
     react(),
     tailwind({
