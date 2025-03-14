@@ -51,21 +51,31 @@ function formatLocalMonth(dateString: string): string {
   flex-direction: column;
   gap: 1rem;
   position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #ccc;
+  z-index: 0;
 }
 
 .timeline-item {
   display: flex;
   flex-direction: column;
-  padding-left: 1.5rem;
   position: relative;
   margin-bottom: 1rem;
 }
 
-/* Timeline circles */
 .timeline-item::before {
   content: '';
   position: absolute;
-  left: 0;
+  left: -1.4rem;
   top: 0.5rem;
   width: 1rem;
   height: 1rem;
@@ -73,23 +83,6 @@ function formatLocalMonth(dateString: string): string {
   border-radius: 50%;
   border: 2px solid #ccc;
   z-index: 1;
-}
-
-/* Timeline */
-.timeline-item::after {
-  content: '';
-  position: absolute;
-  left: 0.45rem;
-  top: 1rem;
-  width: 2px;
-  height: calc(150% - 1rem);
-  background-color: #ccc;
-  z-index: 0;
-}
-
-.timeline-date {
-  font-size: 0.875rem;
-  color: #666;
 }
 
 .timeline-content {
@@ -112,20 +105,13 @@ function formatLocalMonth(dateString: string): string {
   font-size: 1rem;
 }
 
-.timeline-tags {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-.timeline-badge {
-  background-color: #eee;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
+.timeline-date {
+  font-size: 0.875rem;
+  color: #666;
 }
 
 .timeline-image-container {
-  margin-right: 1rem; /* Change margin-left to margin-right */
+  margin-right: 1rem;
 }
 
 .timeline-image {
