@@ -8,11 +8,7 @@ export function ModeToggle() {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const savedTheme = localStorage.getItem("theme");
-    const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+    const initialTheme = "light";
     setTheme(initialTheme);
     applyTheme(initialTheme);
   }, []);
