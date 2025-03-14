@@ -9,12 +9,12 @@ export function ModeToggle() {
 
   useEffect(() => {
     const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
+      "(prefers-color-scheme: dark)"
     ).matches;
-    const savedTheme =
-      localStorage.getItem("theme") || (systemPrefersDark ? "dark" : "light");
-    setTheme(savedTheme);
-    applyTheme(savedTheme);
+    const savedTheme = localStorage.getItem("theme");
+    const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+    setTheme(initialTheme);
+    applyTheme(initialTheme);
   }, []);
 
   const applyTheme = (theme: string) => {
