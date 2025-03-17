@@ -5,7 +5,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mateo-miossec.me',
+  site: 'https://zaynity.github.io',
   base: 'portfolio',
   trailingSlash: "always",
   integrations: [
