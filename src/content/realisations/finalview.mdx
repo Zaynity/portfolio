@@ -4,7 +4,7 @@ title: "FinalView"
 description: "Développement d'une plateforme permettant d’héberger et de visualiser les projets réalisés par les étudiants."
 image:
   {
-    url: "/portfolio/production/finalview/finalview.png",
+    url: "/production/finalview/finalview.png",
     alt: "FinalView"
   }
 tags: ["Virtualisation", "Scripting", "Admin Système Linux"]
@@ -21,7 +21,7 @@ Ces efforts ont finalement porté leurs fruits car j’ai réussi à faire fonct
 
 ## Présentation
 Ce projet était interne à notre école, cette dernière souhaitait avoir une solution de mise à disposition des étudiants, mais aussi des visiteurs du site **groupe-aen.info**, les projets réalisés par les étudiants dans le cadre de leur projet informatique. 
-<img src="/portfolio/production/finalview/network_diagram.png" alt="Schéma réseau" width="550" height="auto"/>
+<img src="/production/finalview/network_diagram.png" alt="Schéma réseau" width="550" height="auto"/>
 Pour héberger les solutions réalisées par les étudiants de la filière **IL** (Ingénierie Logicielle) et **SI** (Système d’Information) nous avons utilisé des conteneurs grâce à Docker, afin d'héberger les projets en fonction de leurs technologies. Ces projets utilisaient différentes technologies connues en fonction du semestre, à savoir :
 - S1 : NodeJS
 - S2 : PHP/MySQL
@@ -52,12 +52,12 @@ Etapes
 
 ### Mise en place du Web SFTP
 Pour simplifier l'intégration des projets des étudiants, j’avais choisi et configuré un outil assurant un transfert de fichiers facile. Après plusieurs recherches, mon choix s’est porté sur **Filestash**, une solution gratuite et simple d’utilisation.
-<img src="/portfolio/production/finalview/sftp.gif" alt="SFTP"/>
+<img src="/production/finalview/sftp.gif" alt="SFTP"/>
 Cet outil offrait une interface web intuitive pour charger facilement leurs projets dans des répertoires prédéfinis selon les technologies utilisées. L’objectif était de **garantir une prise en main rapide** et une compatibilité avec l’ensemble des conteneurs projets.
 
 ### Création du conteneur pour les projets Angular/JEE
 L’étape suivante consistait à développer un conteneur Docker adapté aux projets Angular/JEE des étudiants en semestre quatre. Je vais vous résumer les principales fonctionnalités et configurations implémentées dans le Dockerfile que j’ai pu créer pour ce conteneur.
-<img src="/portfolio/production/finalview/dockerfile.png" alt="Dockerfile Angular/JEE"/>
+<img src="/production/finalview/dockerfile.png" alt="Dockerfile Angular/JEE"/>
 Je m’étais basé sur l’image **Tomcat version 9** pour héberger et exécuter l’API JEE. J’avais ensuite changé la version par défaut de Java (version 11) pour Java 17, afin de garantir la compatibilité avec les projets des étudiants qui utilisaient tous cette version. Plusieurs outils essentiels ont été ajoutés au fonctionnement du projet comme **OpenJDK 17** pour l’API JEE, **Apache2** pour le front-end Angular et **SSH** afin d’utiliser le web SFTP mis en place précédemment.
 
 J’avais modifié certains fichiers de configuration de Tomcat pour rendre accessible l’interface d’administration Tomcat avec un compte utilisateur et des permissions spécifiques si jamais les élèves avaient besoin de changer des paramètres spécifiques à l’API JEE. Et enfin j’avais ajouté la création d’un groupe et d’un utilisateur SFTP avec les permissions nécessaires pour manipuler les répertoires où étaient stockés les projets depuis le web SFTP.
@@ -80,7 +80,7 @@ Grâce à ces efforts, j’ai pu héberger et faire fonctionner un projet correc
 
 ## Acteurs
 L’équipe projet était composée de **Thibault BERTRAND**, **Benoît PREVOST**, **Maïwenn GUILLOU**, **Noé LARIDAN**, qui assurait aussi le rôle de Scrum Master et de moi-même. Ensemble, nous avons partagé la conception, le développement, les tests et l’intégration de la solution tout en nous entraidant tout le long du projet en fonction des difficultés de chacun.
-<img src="/portfolio/production/finalview/team.png" alt="Equipe projet" style="border-radius: 8px;"/>
+<img src="/production/finalview/team.png" alt="Equipe projet" style="border-radius: 8px;"/>
 Dans le cadre de ma mission, j’ai pu collaborer avec plusieurs personnes externes au projet pour relever les défis techniques majeurs.
 Tout d’abord, il y a eu l’encadrant **Martin HARDY**. Grâce à son expertise en ingénierie logicielle et en administration Linux, j’ai pu résoudre le problème de connexion entre le front-end Angular et l’API JEE.
 
