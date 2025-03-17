@@ -11,74 +11,111 @@ tags: ["Base de données", "Scripting", "Admin Système Linux"]
 type: "competences"
 ---
 ## Mon regard critique
-Le projet verify2.py m'a offert une expérience très enrichissante, renforçant à la fois mes compétences techniques et ma capacité à gérer un projet. En travaillant sur ce script, j'ai dû relever des défis techniques complexes, comme l'intégration de grandes quantités de données dans mon script et travailler avec ces dernières en réalisant des comparaisons précises pour identifier les machines inactives. Grâce à ce projet, j'ai pu améliorer mes compétences en Python et SQLite et apprendre à écrire un code clair et réutilisable.
-La collaboration avec Uwe TROGER et Yann LOUTOBY a été essentielle pour la réussite du projet. Leur expertise m'a guidé tant sur le plan technique que sur celui de la gestion de projet. Ils m'ont montré l'importance d'une planification rigoureuse et de la répartition efficace des tâches, en utilisant des outils comme le Kanban. Ces interactions m'ont aussi permis de mieux comprendre les processus internes et l'importance de la communication au sein de l'équipe.
-Le script a eu un impact significatif sur l'entreprise, permettant de réaliser des économies importantes en licences Ansible inutilisées, avec environ 18 000 euros économisés la première année. Cette automatisation a libéré du temps pour des tâches à plus forte valeur ajoutée, augmentant ainsi l'efficacité de l’équipe. La réalisation de ce projet m'a apporté une très grande satisfaction personnelle et a renforcé ma confiance en mes capacités à résoudre des problèmes complexes.
+Le projet verify2.py m'a offert une expérience très enrichissante, renforçant à la fois mes compétences techniques et ma capacité à gérer un projet.
+
+En travaillant sur ce script, j'ai dû relever des défis techniques complexes, comme l'intégration de grandes quantités de données dans mon script et travailler avec ces dernières en réalisant des comparaisons précises pour identifier les machines inactives. Grâce à ce projet, j'ai pu améliorer mes compétences en Python et SQLite et apprendre à écrire un code clair et réutilisable.
+
+La collaboration avec **Uwe TROGER** et **Yann LOUTOBY** a été essentielle pour la réussite du projet. Leur expertise m'a guidé tant sur le plan technique que sur celui de la gestion de projet. Ils m'ont montré l'importance d'une planification rigoureuse et de la répartition efficace des tâches, en utilisant des outils comme le Kanban.
+
+Ces interactions m'ont aussi permis de mieux comprendre les processus internes et l'importance de la communication au sein de l'équipe.
+
+Le script a eu un **impact significatif** sur l'entreprise, permettant de réaliser des économies importantes en licences Ansible inutilisées, avec environ **18 000 euros économisés** la première année. Cette automatisation a libéré du temps pour des tâches à plus forte valeur ajoutée, augmentant ainsi l'efficacité de l’équipe.
+
+La réalisation de ce projet m'a apporté une très grande satisfaction personnelle et a renforcé ma confiance en mes capacités à résoudre des problèmes complexes.
 
 ## Présentation
-Avant de vous expliquer en quoi consiste le script Python verify2.py, je vais vous donner un peu de contexte, Airbus possède une base de données appelée CMDB (Configuration Management DataBase) qui contient tous les noms de domaine complets (Fully Qualified Domain Name ou FQDN) ainsi que les statuts correspondants à chaque machine utilisée par Airbus. Ansible dispose également d'une base de données contenant les noms de domaine et les organisations des machines utilisées par Airbus via Ansible. Cependant, il n'existe actuellement aucune solution pour vérifier si une machine dont le statut indique qu'elle n'est plus utilisée dans la base de données CMDB est supprimée automatiquement de la base de données d’Ansible. Par conséquent, Airbus se base sur les noms de domaine de la base de données d’Ansible pour attribuer une licence Ansible à chaque machine, ce qui signifie que des licences sont payées pour des machines qui ne sont pas utilisées. Ce script donne une liste avec les valeurs qui ne sont pas considérées comme correctes.
+Avant de vous expliquer en quoi consiste le script Python verify2.py, je vais vous donner un peu de contexte, **Airbus** possède une base de données appelée **CMDB** (Configuration Management DataBase) qui contient tous les **noms de domaine complets** (Fully Qualified Domain Name ou FQDN) ainsi que les statuts correspondants à chaque machine utilisée par Airbus.
+
+**Ansible** dispose également d'une base de données contenant les noms de domaine et les organisations des machines utilisées par Airbus via Ansible. Cependant, il n'existe actuellement aucune solution pour vérifier si une machine dont le statut indique qu'elle n'est plus utilisée dans la base de données CMDB est supprimée **automatiquement** de la base de données d’Ansible.
+
+Par conséquent, Airbus se base sur les noms de domaine de la base de données d’Ansible pour attribuer une licence Ansible à chaque machine, ce qui signifie que des **licences** sont **payées** pour des **machines** qui ne sont **pas utilisées**. Ce script donne une liste avec les valeurs qui ne sont pas considérées comme correctes.
 
 ## Objectifs et enjeux
-L'objectif principal du projet était de développer un script Python, verify2.py, capable de comparer les données des bases CMDB et Ansible d'Airbus pour identifier les machines dont le statut est incorrect, permettant ainsi de libérer des licences inutilisées. Ce projet visait à optimiser l'utilisation des licences Ansible en supprimant les machines inactives, réduisant ainsi les coûts.
-L'enjeu majeur était financier. En ne disposant pas d'un système de vérification efficace, Airbus payait des licences Ansible pour des machines inactives. La mise en place du script permettrait de réduire ces dépenses et d'améliorer la gestion des ressources.
+L'objectif principal du projet était de développer un script Python, verify2.py, capable de comparer les données des bases CMDB et Ansible d'Airbus pour **identifier** les machines dont le **statut** est **incorrect**, permettant ainsi de libérer des licences inutilisées.
+
+Ce projet visait à optimiser l'utilisation des licences Ansible en supprimant les machines inactives, réduisant ainsi les coûts.
+L'**enjeu** majeur était **financier**. En ne disposant pas d'un système de vérification efficace, Airbus payait des licences Ansible pour des machines inactives. La mise en place du script permettrait de réduire ces dépenses et d'améliorer la gestion des ressources.
 
 ## Etapes
-Lors de la présentation du projet par Yann et Uwe, membres de mon équipe, j’ai pu prendre des notes et poser des questions.
-À l’aide des informations récoltées, j’ai réalisé un schéma prévisionnel sous forme d’organigramme, avec trois sortes de triangle : 
-- Le rectangle « condition », en orange, cette condition regarde si oui ou non je passe à la condition ou à l’action suivante.
-- Le rectangle « action », en bleu, représente ce qui doit être effectué en fonction de la condition en orange précédente.
-- Le rectangle « ok », en vert, il n’est présent qu’une seule fois dans le schéma et il correspond à l’action ne rien faire, toutes les conditions sont respectées, la valeur est donc valide.
+Lors de la présentation du projet par **Yann** et **Uwe**, membres de mon équipe, j’ai pu prendre des notes et poser des questions.
+À l’aide des informations récoltées, j’ai réalisé un **schéma prévisionnel** sous forme d’organigramme, avec trois sortes de triangle : 
+- Le rectangle « **condition** », en orange, cette condition regarde si oui ou non je passe à la condition ou à l’action suivante.
+- Le rectangle « **action** », en bleu, représente ce qui doit être effectué en fonction de la condition en orange précédente.
+- Le rectangle « **ok** », en vert, il n’est présent qu’une seule fois dans le schéma et il correspond à l’action ne rien faire, toutes les conditions sont respectées, la valeur est donc valide.
 Voici une vue de haut de toutes les possibilités prévues par le script :
  
-Une fois le schéma prévisionnel validé par Yann et Uwe, j’ai réalisé le pseudo-code, en me basant sur le schéma précédemment réalisé. Le pseudo-code est une façon de décrire l'algorithme du script de manière compréhensible par une personne technique comme non technique. J’utilise des mots-clés tels que « pour », « si », « alors » ou encore « sinon » pour représenter les étapes nécessaires à l'exécution du script. 
-J’ai réalisé la partie gestion de projet en utilisant l’outil Kanban afin de répartir les tâches entre Thibaud GRAND mon collègue et moi-même. Chaque jour, nous réalisions une courte discussion pour savoir s’il y avait des points bloquants et ce sur quoi nous allions travailler.
+Une fois le **schéma prévisionnel validé** par Yann et Uwe, j’ai réalisé le **pseudo-code**, en me basant sur le schéma précédemment réalisé. Le pseudo-code est une façon de décrire l'algorithme du script de manière compréhensible par une personne technique comme non technique. J’utilise des mots-clés tels que « pour », « si », « alors » ou encore « sinon » pour représenter les étapes nécessaires à l'exécution du script. 
+
+J’ai réalisé la partie gestion de projet en utilisant l’outil **Kanban** afin de répartir les tâches entre **Thibaud GRAND** mon collègue et moi-même.
+
+**Chaque jour**, nous réalisions une courte **discussion** pour savoir s’il y avait des **points bloquants** et ce sur quoi nous allions travailler.
 À partir de ce pseudo-code j’ai réalisé le script que j’ai coupé en plusieurs parties pour que vous compreniez mieux.
 
 ### Première partie : récupération des données
-Pour la partie récupération des données dans la base de données d’Ansible, j’apporte quelques modifications dans le but d’y récupérer trois variables présentes dans Ansible s’il y en a. La première variable contenant normalement un nom de domaine pleinement qualifié, la deuxième un nom de domaine et la troisième une adresse IP.
-J’emploie le mot « normalement », car les valeurs présentes dans les variables sont rentrées manuellement par les utilisateurs d’Ansible et ne sont pas forcément les bonnes. Par exemple, on peut retrouver une adresse IP en valeur dans la variable nom de domaine pleinement qualifié alors qu’il doit y avoir une adresse IP en valeur.
+Pour la partie récupération des données dans la base de données d’Ansible, j’apporte quelques modifications dans le but d’y récupérer **trois variables** présentes dans Ansible s’il y en a. La première variable contenant normalement un nom de domaine pleinement qualifié, la deuxième un nom de domaine et la troisième une adresse IP.
+
+J’emploie le mot « **normalement** », car les valeurs présentes dans les variables sont rentrées manuellement par les utilisateurs d’Ansible et ne sont pas forcément les bonnes. Par exemple, on peut retrouver une adresse IP en valeur dans la variable nom de domaine pleinement qualifié alors qu’il doit y avoir une adresse IP en valeur.
+
 Pour la base de données CMDB, je modifie le code existant pour récupérer l’adresse IP en plus du nom de domaine, du nom de domaine pleinement qualifié et du statut des machines.
 Ces nouvelles informations sont nécessaires pour obtenir un script qui prévoit toutes les possibilités de comparaison.
 
 ### Deuxième partie : fonctions
 L’utilisation de fonctions est obligatoire dans ce script, car je réutilise à de nombreuses reprises les mêmes parties du code.
-La première fonction, appelée « execute_requete ». Cette fonction est utilisée pour exécuter une requête dans une base de données. Elle se connecte à la base de données SQLite contenant les valeurs de la base de données CMDB et Ansible et exécute la requête spécifiée. Elle peut également prendre des paramètres en option pour exécuter des requêtes préparées. Une requête préparée est une méthode sécurisée et optimisée pour exécuter des requêtes SQL répétitives. Une fois la requête exécutée, la fonction retourne le résultat de la requête.
-La deuxième fonction qui est appelée « nslookup ». Cette fonction est utilisée pour effectuer une recherche DNS inverse en utilisant un nom de domaine ou une adresse IP en entrée. Elle utilise la bibliothèque Python « socket » pour obtenir l'adresse IP correspondant au nom de domaine. Ensuite, elle obtient le nom de domaine pleinement qualifié (FQDN) et les alias associés à cette adresse IP. Un alias est un moyen de donner un autre nom à une adresse IP ou à un nom d'hôte existant. Enfin, la fonction retourne l'adresse IP, le FQDN, les alias (le cas échéant) et un message d'erreur s’il y en a. Cela me permet de rentrer les valeurs présentes dans les variables Ansible citées dans la première partie pour retrouver un nom de domaine pleinement qualifié.
-La troisième fonction, appelée « verification_valeur ». Cette fonction me permet de vérifier si une valeur présente dans une variable Ansible donnée est un nom de domaine pleinement qualifié, un nom de domaine ou une adresse IP car les actions sont différentes suivant le type de valeur. Elle utilise des expressions régulières pour effectuer les vérifications. Si la valeur correspond à l'un des types spécifiés, la fonction retourne le type correspondant (« FQDN » pour le nom de domaine pleinement qualifié, « hostname » pour le nom domaine, « IP » pour l'adresse IP). Si aucune correspondance n'est trouvée, la fonction affiche un message indiquant que la valeur n'appartient à aucun des types spécifiés.
+
+La première fonction, appelée « **execute_requete** ». Cette fonction est utilisée pour exécuter une requête dans une base de données. Elle se connecte à la base de données SQLite contenant les valeurs de la base de données CMDB et Ansible et exécute la requête spécifiée. Elle peut également prendre des paramètres en option pour exécuter des requêtes préparées. Une requête préparée est une méthode sécurisée et optimisée pour exécuter des requêtes SQL répétitives. Une fois la requête exécutée, la fonction retourne le résultat de la requête.
+
+La deuxième fonction qui est appelée « **nslookup** ». Cette fonction est utilisée pour effectuer une recherche DNS inverse en utilisant un nom de domaine ou une adresse IP en entrée. Elle utilise la bibliothèque Python « socket » pour obtenir l'adresse IP correspondant au nom de domaine. Ensuite, elle obtient le nom de domaine pleinement qualifié (FQDN) et les alias associés à cette adresse IP. Un alias est un moyen de donner un autre nom à une adresse IP ou à un nom d'hôte existant. Enfin, la fonction retourne l'adresse IP, le FQDN, les alias (le cas échéant) et un message d'erreur s’il y en a. Cela me permet de rentrer les valeurs présentes dans les variables Ansible citées dans la première partie pour retrouver un nom de domaine pleinement qualifié.
+
+La troisième fonction, appelée « **verification_valeur** ». Cette fonction me permet de vérifier si une valeur présente dans une variable Ansible donnée est un nom de domaine pleinement qualifié, un nom de domaine ou une adresse IP car les actions sont différentes suivant le type de valeur. Elle utilise des expressions régulières pour effectuer les vérifications. Si la valeur correspond à l'un des types spécifiés, la fonction retourne le type correspondant (« FQDN » pour le nom de domaine pleinement qualifié, « hostname » pour le nom domaine, « IP » pour l'adresse IP). Si aucune correspondance n'est trouvée, la fonction affiche un message indiquant que la valeur n'appartient à aucun des types spécifiés.
 
 ### Troisième partie : importation des données dans une base de données SQLite
 Dans cette partie, je réutilise les éléments de la deuxième partie expliquée dans le script verify.py mais je l’adapte afin de rajouter les données supplémentaires récupérées en première partie de ce script (les trois variables pour la base de données Ansible et l’adresse IP pour la base de données CMDB.
 
 ### Quatrième partie : vérifications des données
-Je commence par une boucle « for », cette dernière me permet de répéter les vérifications pour chaque valeur dans la liste de données provenant d’Ansible. Par exemple, s’il y a 3000 valeurs à vérifier dans la liste de données d’Ansible, la boucle for sera exécutée une fois par valeur, soit 3000 fois. À chaque itération, la boucle extrait différentes valeurs de la ligne actuelle dans la liste Ansible, telles que le nom de domaine Ansible, l'organisation et les variables Ansible pour les rentrer dans une variable. Par exemple, la boucle extrait la valeur nom-dedomaine.fr.corp pour la rentrer dans la variable « FQDN ». À chaque fois que je vais appeler la variable dans le code, c’est la valeur nom-de-domaine.fr.corp qui sera utilisée et ainsi de suite.
+Je commence par une boucle « **for** », cette dernière me **permet** de **répéter** les vérifications pour chaque valeur dans la liste de données provenant d’Ansible. Par exemple, s’il y a **3000 valeurs** à vérifier dans la liste de données d’Ansible, la boucle for sera **exécutée** une fois par valeur, soit **3000 fois**.
+
+À chaque itération, la boucle extrait différentes valeurs de la ligne actuelle dans la liste Ansible, telles que le nom de domaine Ansible, l'organisation et les variables Ansible pour les rentrer dans une variable. Par exemple, la boucle extrait la valeur nom-dedomaine.fr.corp pour la rentrer dans la variable « FQDN ».
+
+À chaque fois que je vais appeler la variable dans le code, c’est la valeur nom-de-domaine.fr.corp qui sera utilisée et ainsi de suite.
 Ensuite, il recherche une correspondance dans les données de liste CMDB en utilisant le nom d'hôte Ansible. Si une correspondance est trouvée, cela signifie que le nom d'hôte Ansible existe dans la CMDB. Dans ce cas, le script effectue différentes vérifications et mises à jour en fonction de l'état de la machine dans la CMDB.
-Si l'état de la machine dans la CMDB est « retraite en cours » ou « installé », cela signifie que le nom d'hôte Ansible correspond au FQDN de la CMDB et que l'état est valide. Le script exécute alors une requête de mise à jour dans la base de données pour mettre à jour les informations de l'enregistrement Ansible. 
-Si l'état de la CMDB n'est pas « retraite en cours » ou « installé », cela signifie que le nom d'hôte Ansible correspond au FQDN de la CMDB mais que l'état n'est pas valide. Le script exécute alors une autre requête de mise à jour pour mettre à jour les informations de l'enregistrement Ansible en disant qu’il faut supprimer le nom d'hôte Ansible dans la plateforme Ansible.
+
+Si l'état de la machine dans la CMDB est « **retraite en cours** » ou « **installé** », cela signifie que le nom d'hôte Ansible correspond au FQDN de la CMDB et que l'état est valide. Le script exécute alors une requête de mise à jour dans la base de données pour mettre à jour les informations de l'enregistrement Ansible. 
+
+Si l'état de la CMDB n'est pas « **retraite en cours** » ou « **installé** », cela signifie que le nom d'hôte Ansible correspond au FQDN de la CMDB mais que l'état n'est pas valide. Le script exécute alors une autre requête de mise à jour pour mettre à jour les informations de l'enregistrement Ansible en disant qu’il faut supprimer le nom d'hôte Ansible dans la plateforme Ansible.
+
 Si aucune correspondance n'est trouvée avec le nom d'hôte Ansible dans la CMDB, le script effectue une autre recherche en utilisant le nom d'hôte Ansible comme nom de domaine dans la CMDB. Si une correspondance est trouvée, cela signifie que le nom d'hôte Ansible correspond au nom d'hôte dans la CMDB, mais pas au FQDN. Le script effectue alors des vérifications similaires aux précédentes et effectue les mises à jour appropriées dans la base de données.
-Si aucune correspondance n'est trouvée avec le nom d'hôte Ansible dans la CMDB en utilisant les deux méthodes de recherche, je continue avec une nouvelle méthode pour les variables Ansible. J’utilise la fonction « verification_valeur » pour déterminer le type de la première variable. Si le type est « FQDN » (Fully Qualified Domain Name), cela signifie qu'il s'agit d'un nom de domaine pleinement qualifié.
+
+Si aucune correspondance n'est trouvée avec le nom d'hôte Ansible dans la CMDB en utilisant les deux méthodes de recherche, je continue avec une nouvelle méthode pour les variables Ansible. J’utilise la fonction « **verification_valeur** » pour déterminer le type de la première variable. Si le type est « **FQDN** » (Fully Qualified Domain Name), cela signifie qu'il s'agit d'un nom de domaine pleinement qualifié.
 Ensuite, le script effectue différentes vérifications et mises à jour en fonction du type de valeur.
+
 Si la valeur est un FQDN, le script recherche une correspondance dans les données de la CMDB en utilisant le FQDN. S'il y a une correspondance, le script extrait les informations associées à cet enregistrement CMDB, telles que le nom de domaine, l'état et l'adresse IP. Ensuite, en fonction de l'état de la CMDB, le script effectue une mise à jour dans la base de données Ansible avec les informations appropriées.
-Si aucune correspondance n'est trouvée avec le FQDN dans la CMDB, le script utilise la fonction « nslookup » pour réaliser une recherche en utilisant le FQDN. S'il y a une correspondance dans la CMDB avec le FQDN obtenu à partir de la fonction, le script effectue des mises à jour similaires à celles décrites précédemment en fonction de l'état de la CMDB.
+
+Si aucune correspondance n'est trouvée avec le FQDN dans la CMDB, le script utilise la fonction « **nslookup** » pour réaliser une recherche en utilisant le FQDN. S'il y a une correspondance dans la CMDB avec le FQDN obtenu à partir de la fonction, le script effectue des mises à jour similaires à celles décrites précédemment en fonction de l'état de la CMDB.
+
 Si la fonction « nslookup » ne renvoie aucune correspondance avec un FQDN dans la CMDB, le script effectue des mises à jour spécifiques à cette situation. Il vérifie également si la fonction « nslookup » renvoie un FQDN avec ou sans alias et effectue les mises à jour appropriées dans la base de données Ansible.
 Le principe reste le même pour les autres variables et les valeurs de type nom de domaine ainsi que de type adresse IP avec quelques différences.
 
 ### Cinquième partie : exportation des données
-Contrairement à la quatrième partie du script verify.py où j’exporte uniquement toutes les valeurs vérifiées dans un seul fichier CSV; j’ajoute de nouvelles exportations pour les cinq actions nécessaires présentes dans la dernière version de l’organigramme en annexe. Toutes les valeurs vérifiées ont une action nécessaire, « à supprimer », « à renommer », « à renommer et envoyer un mail à la cmdb », « FQDN incorrect ». En fonction de l’action, la valeur est envoyée dans le fichier CSV correspondant à son action nécessaire.
+Contrairement à la quatrième partie du script verify.py où j’exporte uniquement **toutes les valeurs** vérifiées dans **un seul fichier CSV**; j’ajoute de nouvelles exportations pour les cinq actions nécessaires présentes dans la dernière version de l’organigramme en annexe. Toutes les valeurs vérifiées ont une action nécessaire, « **à supprimer** », « **à renommer** », « **à renommer et envoyer un mail à la cmdb** », « **FQDN incorrect** ». En fonction de l’action, la valeur est envoyée dans le fichier CSV correspondant à son action nécessaire.
 
 ### Conclusion du script
 Grâce à ce script, nous pouvons maintenant détecter les machines inutilisées dans la base de données Ansible et éviter de payer des licences pour des ressources non utilisées. En supprimant les doublons et en fournissant des informations claires sur les correspondances et les divergences entre les deux bases de données, nous facilitons la gestion et la maintenance de l’infrastructure Ansible d'Airbus.
 
 ## Acteurs
-Uwe TROGER et Yann LOUTOBY, membres de mon équipe, m’ont donné les grandes lignes de ce qu’il fallait faire, j’ai pu leur poser des questions quand j’en avais besoin, plus précisément Yann pour la partie gestion de projet et Uwe pour la partie développement du script. Thibaud GRAND avec qui j’ai coréalisé ce script.
+**Uwe TROGER** et **Yann LOUTOBY**, membres de mon équipe, m’ont donné les grandes lignes de ce qu’il fallait faire, j’ai pu leur poser des questions quand j’en avais besoin, plus précisément Yann pour la partie gestion de projet et Uwe pour la partie développement du script. **Thibaud GRAND** avec qui j’ai coréalisé ce script.
 
 ## Résultats
-Ce script m’a permis de progresser énormément sur le plan technique, avec des technologies telles que Python et SQLite mais également sur la gestion de projet où j’ai pu répartir les tâches, prévoir des deadlines afin de mener à bien cette réalisation avec l’aide de mon collègue Thibaud GRAND.
+Ce script m’a permis de progresser énormément sur le plan technique, avec des technologies telles que Python et SQLite mais également sur la gestion de projet où j’ai pu répartir les tâches, prévoir des deadlines afin de mener à bien cette réalisation avec l’aide de mon collègue **Thibaud GRAND**.
+
 Grâce à ce script, mon équipe peut maintenant détecter les machines inutilisées dans la base de données Ansible et éviter à Airbus de payer des licences pour des ressources non utilisées. 
-En quelques chiffres, ce script permet de gagner 3 jours de travail à mon équipe par mois et environ 18 000 euros d’économie la première année de lancement, car 600 machines n’étaient pas valides et une licence Ansible pour une machine coûte environ 30 euros par an. 
+
+En quelques chiffres, ce script permet de gagner 3 jours de travail à mon équipe par mois et environ **18 000 euros d’économie** la première année de lancement, car **600 machines** n’étaient **pas valides** et **une licence** Ansible pour **une machine** coûte environ **30 euros par an**. 
 
 ## Lendemains du projet
-Juste après la mise en œuvre du script verify2.py, mon équipe a pu constater une amélioration significative de l'efficacité de la gestion des licences. Les membres de mon équipe ont pu se concentrer sur d'autres tâches à plus forte valeur ajoutée, grâce au temps gagné.
-À moyen terme, l'implémentation de ce script a permis de standardiser les processus de vérification et de synchronisation des bases de données, facilitant la gestion des licences de manière continue. Mon équipe et moi-même avons également utilisé l'expérience acquise pour proposer des améliorations supplémentaires dans d'autres domaines de la gestion des ressources.
-Actuellement, le script continue de fonctionner de manière autonome, générant des rapports réguliers sur les machines inactives et les licences à libérer. Grâce à cette automatisation, Airbus réalise des économies et mon équipe a intégré ce processus dans ses routines de maintenance.
+**Juste après** la mise en œuvre du script verify2.py, mon équipe a pu constater une amélioration significative de l'efficacité de la gestion des licences. Les membres de mon équipe ont pu se concentrer sur d'autres tâches à plus forte valeur ajoutée, grâce au temps gagné.
+
+**À moyen terme**, l'implémentation de ce script a permis de standardiser les processus de vérification et de synchronisation des bases de données, facilitant la gestion des licences de manière continue. Mon équipe et moi-même avons également utilisé l'expérience acquise pour proposer des améliorations supplémentaires dans d'autres domaines de la gestion des ressources.
+
+**Actuellement**, le script continue de fonctionner de manière autonome, générant des rapports réguliers sur les machines inactives et les licences à libérer. Grâce à cette automatisation, Airbus réalise des économies et mon équipe a intégré ce processus dans ses routines de maintenance.
 
 En résumé, le projet verify2.py a été une expérience déterminante, me permettant de développer des compétences cruciales tout en contribuant de manière significative à l'optimisation des ressources d'Airbus. Les leçons tirées de cette expérience continueront d'influencer positivement mes futurs projets professionnels.
