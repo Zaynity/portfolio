@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import { Button } from '../ui/button';
 
-
 let experiences = await getCollection('experiences');
 
 // Function to format the date in French
@@ -22,7 +21,7 @@ experiences = experiences.slice(0, 3);
   {experiences.map((exp) => (
     <div>
       <h3 class="text-lg text-primary">
-        <a href={`/parcours/${exp.slug}`} class="hover:underline">
+        <a href={"/parcours/${exp.slug}"} class="hover:underline">
           {exp.data.title}
         </a>
       </h3>
@@ -34,7 +33,7 @@ experiences = experiences.slice(0, 3);
       </p>
     </div>
   ))}
-  <a href={`/parcours`}>
+  <a href="/parcours">
     <Button variant="link" className="pl-0">Voir l'ensemble de mon parcours</Button>
   </a>
 </div>
