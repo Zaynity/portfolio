@@ -36,7 +36,7 @@ function formatLocalMonth(dateString: string): string {
           <div class="timeline-date">
             De {formatLocalMonth(entry.data.startDate)} à {formatLocalMonth(entry.data.endDate)}
           </div>
-          <a href={`${import.meta.env.BASE_URL}/parcours/${entry.slug}`}>
+          <a href={`/parcours/${entry.slug}`}>
             <Button variant="link" className="pl-0">En savoir plus</Button>
           </a>
         </div>

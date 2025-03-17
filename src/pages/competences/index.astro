@@ -19,7 +19,7 @@ const skills = await getCollection('competences');
         <SkillCard
           key={entity.data.title}
           class={entity.data.category}
-          href={`${import.meta.env.BASE_URL}/competences/` + entity.slug}
+          href={`/competences/` + entity.slug}
           heading={entity.data.title}
           subheading={entity.data.description}
           altText={entity?.data?.image.alt}
